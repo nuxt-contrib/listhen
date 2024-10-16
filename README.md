@@ -3,7 +3,7 @@
 <!-- automd:badges -->
 
 [![npm version](https://img.shields.io/npm/v/listhen)](https://npmjs.com/package/listhen)
-[![npm downloads](https://img.shields.io/npm/dm/listhen)](https://npmjs.com/package/listhen)
+[![npm downloads](https://img.shields.io/npm/dm/listhen)](https://npm.chart.dev/listhen)
 
 <!-- /automd -->
 
