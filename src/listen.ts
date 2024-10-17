@@ -35,6 +35,16 @@ import { resolveCertificate } from "./_cert";
 import { isWsl } from "./lib/wsl";
 import { isDocker } from "./lib/docker";
 
+/**
+ * Starts an HTTP or HTTPS server with the provided request handler and configuration options.
+ * This function sets up the server, configures the port and hostname, enables HTTPS if specified, sets up
+ * WebSocket support if required, handles tunneling for public access, and provides utilities for displaying URLs
+ * and handling server shutdown.
+ *
+ * @param handle The request listener function for handling HTTP requests.
+ * @param _options Partial configuration options for the server. Inherits from {@link ListenOptions}.
+ * @returns a promise that resolves to a {@link Listener} object containing server details and utility functions.
+ */
 export async function listen(
   handle: RequestListener,
   _options: Partial<ListenOptions> = {},

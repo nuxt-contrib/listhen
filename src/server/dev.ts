@@ -8,12 +8,44 @@ import type { CrossWSOptions, ListenOptions } from "../types";
 import { createResolver } from "./_resolver";
 
 export interface DevServerOptions {
+  /**
+   * The current working directory from which the server should serve files.
+   * @optional
+   * @default process.cwd() || import.meta.url
+   */
   cwd?: string;
+
+  /**
+   * An array of directories from which static files will be served.
+   * @optional
+   * @default ["public"]
+   */
   staticDirs?: string[];
+
+  /**
+   * The logger instance to be used by the development server. See {@link ConsolaInstance}.
+   * @optional
+   * @default consola.withTag("listhen")
+   */
   logger?: ConsolaInstance;
+
+  /**
+   * Configuration options for WebSocket communication. See {@link ListenOptions["ws"]}.
+   * @optional
+   */
   ws?: ListenOptions["ws"];
 }
 
+/**
+ * Creates and configures a development server with options for serving static files,
+ * WebSocket support and custom logging.
+ * 
+ * @param entry The path to the server's entry file.
+ * @param options Configuration options for the development server. See {@link DevServerOptions}.
+ * @returns an object containing server configuration details such as the current working directory (`cwd`),
+ * a resolver function, the node listener function for integration with other Node.js servers or middleware,
+ * a reload function to reload the server configuration, and WebSocket options (`_ws`).
+ */
 export async function createDevServer(
   entry: string,
   options: DevServerOptions,

@@ -7,12 +7,43 @@ import { listen } from "../listen";
 import { createDevServer, DevServerOptions } from "./dev";
 
 export interface WatchOptions extends DevServerOptions {
+  /**
+   * The current working directory from which the server should run.
+   * Inherits all the properties of {@link DevServerOptions}.
+   * @optional
+   */
   cwd?: string;
+
+  /**
+   * The logger instance to use for logging within the watch process.
+   * @optional
+   * See {@link ConsolaInstance}.
+   */
   logger?: ConsolaInstance;
+
+  /**
+   * An array of glob patterns to specify files or directories to ignore during monitoring.
+   * @optional
+   */
   ignore?: string[];
+
+  /**
+   * An array of directories containing static files. These directories are served by the dev server.
+   * @optional
+   */
   publicDirs?: string[];
 }
 
+/**
+ * Initialises a development server with file-watching capabilities, automatically reloading the server as files change.
+ * This feature combines the setup of a development server with file monitoring to provide a live development environment.
+ * 
+ * @param entry The path to the server's entry file.
+ * @param options Configuration options that combine {@link ListenOptions} and {@link WatchOptions} for server listening and file and
+ * file-watching behaviour. This allows partial customisation by merging server and watcher configurations.
+ * @returns a promise that resolves to an {@link listener} instance representing the launched server with attached file-watching capabilities.
+ * This server will be reloaded on specified file changes.
+ */
 export async function listenAndWatch(
   entry: string,
   options: Partial<ListenOptions & WatchOptions>,
