@@ -13,6 +13,7 @@ export interface Certificate {
 }
 
 export interface HTTPSOptions {
+  reuse?: boolean;
   cert?: string;
   key?: string;
   pfx?: string;
