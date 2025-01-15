@@ -149,6 +149,10 @@ export async function createDevServer(
         _loadedEntry.default ||
         _loadedEntry;
 
+      if (_handler.options && _handler.options.onError) {
+        app.options.onError = _handler.options.onError;
+      }
+
       if (options.ws) {
         Object.assign(
           dynamicWS,
